@@ -1,0 +1,91 @@
+<html>
+<head><title>Easy YouTube Downloader</title>
+    <!-- Das neueste kompilierte und minimierte CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optionales Theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Das neueste kompilierte und minimierte JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<?php
+require "Downloader.php";
+?>
+<body>
+<div class="container">
+
+        <h1 class="headline">Willkommen beim Easy YouTube Downloader</h1>
+
+        <!--Form zum umwandeln in MP3F auf dem Server -->
+        <form method="get" class="form-horizontal">
+
+            <input class="form-control" type="text" placeholder="Video URL hier hinein kopieren" id="vidUrl"
+                   name="vidUrl" autocomplete="off" autofocus>
+
+
+            <div class="radio form-horizontal">
+                <label>
+                    <input type="radio" id="formatM4A" name="formatChooser" value="m4a" checked>
+                    m4a - Audio
+                </label>
+            </div>
+            <div class="radio form-horizontal">
+                <label>
+                    <input type="radio" name="formatChooser" value="mp3" checked>
+                    mp3 - Audio (Dauert etwas länger)
+                </label>
+            </div>
+            <div class="radio form-horizontal">
+                <label>
+                    <input type="radio" name="formatChooser" value="mp4" checked>
+                    mp4 - Video
+                </label>
+            </div>
+
+            <!--<label for="formatM4A">m4a - Audio</label>
+
+            <label for="formatMP3"></label>
+
+            <label for="formatMP4">mp4 - Video</label>-->
+            <input class="btn btn-primary btn-lg btn-block" type="submit" id="convertSubmit" name="convertSubmit"
+                   value="Konvertieren">
+
+        </form>
+
+        <hr>
+        <!--Form zum herunterladen der MP3 auf dem Computer -->
+        <a href="down/">Downloads</a>
+
+</div>
+
+</body>
+
+</html>
+
+<?php
+/**
+ * Created by PhpStorm.
+ * User: christian
+ * Date: 17.02.2018
+ * Time: 11:26
+ */
+
+$down = new Downloader();
+
+$newFile = "";
+
+if (isset($_GET["convertSubmit"]))
+{
+    $newFile = $down->convertUrlToFile($_GET["vidUrl"], $_GET["formatChooser"]);
+    echo "<a href=$newFile>DOWNLOAD THIS FILE</a>";
+}
+
+/*
+if (isset($_GET["downloadMP3"]))
+{
+    echo "Download gedrückt";
+
+}
+*/
+
