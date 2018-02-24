@@ -80,7 +80,7 @@ $newFile = "";
 
 if (isset($_GET["convertSubmit"]))
 {
-    echo "URL from Index: ".$_GET["vidUrl"];
+
     $newFile = $down->convertUrlToFile($_GET["vidUrl"], $_GET["formatChooser"]);
     echo "<a href=$newFile>DOWNLOAD THIS FILE</a>";
 }
